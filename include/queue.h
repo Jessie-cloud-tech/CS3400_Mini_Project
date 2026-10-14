@@ -31,8 +31,8 @@ class Queue {
         Queue& operator=(const Queue& other) = delete; //copy assignment operator dissabled
         
         void enqueue(T data); //insert an element at the rear of the queue
-        int dequeue();  //return and remove the front element
-        int peek();  //return the front element without removing it
+        T dequeue();  //return and remove the front element
+        T peek();  //return the front element without removing it
         bool isEmpty(); //check if the queue is empty
         int size(); //return the number of elements in the queue
         void clear();   //clear the queue
