@@ -57,3 +57,44 @@ T Queue<T>::dequeue() {
     return value;
 
 }
+
+
+template <typename T>
+T Queue<T>::peek() {
+
+    // Check if the queue is empty, if it is, throw an exception
+    if(front == nullptr) {
+        throw std::underflow_error("Queue is empty");
+    }
+    
+    // Return the data of the front node without removing it
+    return front->data;
+
+}
+
+template <typename T>
+bool Queue<T>::isEmpty() {
+
+    return front == nullptr && rear == nullptr;
+
+}
+
+template <typename T>
+int Queue<T>::size() {
+
+    return count;
+    
+}
+
+template <typename T>
+void Queue<T>::clear() {
+
+    // Dequeue all elements from the queue until it is empty
+    while(!isEmpty()) {
+        dequeue();
+    }
+
+    // Reset front, rear, and count to indicate an empty queue
+    front = rear = nullptr;
+    count = 0;
+}
