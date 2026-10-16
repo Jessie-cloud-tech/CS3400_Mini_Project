@@ -32,6 +32,14 @@ public:
     int getCapacity();
     bool isAvailable();
     void display();
+
+    //comparison operators
+    bool operator==(const Resource& other) const;
+    bool operator!=(const Resource& other) const;
+
+    //copy constructor and assignment operator
+    Resource(const Resource& other);
+    Resource& operator=(const Resource& other);
 };
 
 

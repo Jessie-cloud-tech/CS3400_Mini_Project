@@ -14,7 +14,7 @@ Stack<T>::~Stack(){
 
 template<typename T>
 void Stack<T>::push(T data) {
-    Node<T>* newNode = createNode(data);
+    StackNode<T>* newNode = createNode(data);
 
     newNode -> next = top;
     top = newNode;
@@ -29,7 +29,7 @@ T Stack<T>::pop() {
         throw std::underflow_error("Stack is empty");
     }
 
-    Node<T>* temp = top;
+    StackNode<T>* temp = top;
     T value = temp-> data;
 
     top = temp-> next;

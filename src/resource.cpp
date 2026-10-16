@@ -81,3 +81,41 @@ void  Resource::display() {
     cout << "Available: "
             << (available ? "Yes" : "No") << endl;
 }
+
+
+//comparison operators
+bool Resource::operator==(const Resource& other) const {
+    return resourceID == other.resourceID &&
+           name == other.name &&
+           type == other.type &&
+           location == other.location &&
+           capacity == other.capacity &&
+           available == other.available;
+}
+
+bool Resource::operator!=(const Resource& other) const {
+    return !(*this == other);
+}
+
+//copy constructor
+Resource::Resource(const Resource& other) {
+    resourceID = other.resourceID;
+    name = other.name;
+    type = other.type;
+    location = other.location;
+    capacity = other.capacity;
+    available = other.available;
+}
+
+//assignment operator
+Resource& Resource::operator=(const Resource& other) {
+    if (this != &other) { // self-assignment check
+        resourceID = other.resourceID;
+        name = other.name;
+        type = other.type;
+        location = other.location;
+        capacity = other.capacity;
+        available = other.available;
+    }
+    return *this;
+}
