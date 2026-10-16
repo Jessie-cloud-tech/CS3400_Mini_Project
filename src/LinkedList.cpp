@@ -21,6 +21,7 @@ void linkedlist<T>::insertfirst(T value){
 
 	
 	head = newnode;
+	count++; // Increment the count when a new node is added
 	
 }
 
@@ -33,6 +34,8 @@ void linkedlist<T>::insertlast(T value){
 	newnode->next = NULL;
 	if(head ==NULL){
 		head = newnode;
+
+		count++; // Increment the count when a new node is added
 		return;
 	}
 	Node<T>* current = head;
@@ -42,6 +45,8 @@ void linkedlist<T>::insertlast(T value){
 	}
 	current->next = newnode;
 	newnode->prev = current;
+
+	count++; // Increment the count when a new node is added
 }
 // INSERT AT  GIVEN POSITION5
 template <class T>
@@ -52,8 +57,8 @@ void linkedlist<T>::insertparticular(T value,int position){
 	}
 	Node<T>* newnode = new Node<T>;
 	newnode->data = value;
-	  newnode->next = nullptr;
-      newnode->prev = nullptr;
+	newnode->next = nullptr;
+    newnode->prev = nullptr;
 	
 	if(position == 0){
 		newnode->next=head;
@@ -64,6 +69,8 @@ void linkedlist<T>::insertparticular(T value,int position){
         }
 
 		head =newnode;
+
+		count++; // Increment the count when a new node is added
 		return;
 	}
 	
@@ -90,6 +97,8 @@ void linkedlist<T>::insertparticular(T value,int position){
     }
 
     current->next = newnode;
+
+	count++; // Increment the count when a new node is added
 }
 
 //REMOVING FRONT
@@ -140,6 +149,8 @@ void linkedlist<T>::removeparticular(int position){
 			head->prev = nullptr;
 		}
 		delete temp;
+
+		count--; // Decrement the count when a node is removed
 		return;
 	}
 	
@@ -160,6 +171,8 @@ void linkedlist<T>::removeparticular(int position){
 	if(temp->next != nullptr){
         temp->next->prev = current;
     }
+
+	count--; // Decrement the count when a node is removed
 	delete temp;
 }
 //SEARCH
@@ -200,4 +213,72 @@ void linkedlist<T>:: clear(){
 template<class T>
 linkedlist<T>::~linkedlist(){
 	clear();
+}
+
+
+//----------methods needed for undo stack--------------------
+// Find a node by ID and return the data in result
+template <class T>
+bool linkedlist<T>::findByID(int id, T& result) {
+    Node<T>* current = head;
+
+    while (current != nullptr) {
+        if (current->data.getResourceID() == id) {
+            result = current->data;
+            return true;
+        }
+
+        current = current->next;
+    }
+
+    return false;
+}
+
+// Remove a node at a specific position and return the data in removed
+template <class T>
+bool linkedlist<T>::removeAt(int position, T& removed) {
+    if (position < 0 || head == nullptr) {
+        return false;
+    }
+
+    Node<T>* current = head;
+
+    for (int i = 0; i < position; i++) {
+        if (current == nullptr) {
+            return false;
+        }
+
+        current = current->next;
+    }
+
+    if (current == nullptr) {
+        return false;
+    }
+
+    // Save the resource before deleting the node
+    removed = current->data;
+
+    // Update the previous node
+    if (current->prev != nullptr) {
+        current->prev->next = current->next;
+    } else {
+        head = current->next;
+    }
+
+    // Update the next node
+    if (current->next != nullptr) {
+        current->next->prev = current->prev;
+    }
+
+    delete current;
+
+	count--; // Decrement the count when a node is removed
+    return true;
+}
+
+
+// Return the size of the linked list
+template <class T>
+int linkedlist<T>::size() {
+	return count;
 }
