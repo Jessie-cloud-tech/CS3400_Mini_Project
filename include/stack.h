@@ -3,14 +3,14 @@
 
 
 template<typename T>
-struct Node {
+struct StackNode {
     T data;
-    Node<T> * next;
+    StackNode<T> * next;
 };
 
 template<typename T>
-Node<T> * createNode(T data) {
-    Node<T> * newNode = new Node<T>;
+StackNode<T> * createNode(T data) {
+    StackNode<T> * newNode = new StackNode<T>;
     newNode->data = data;
     newNode->next = nullptr;
 
@@ -20,7 +20,7 @@ Node<T> * createNode(T data) {
 template<typename T>
 class Stack {
     private:
-        Node<T> * top;
+        StackNode<T> * top;
         int count;
 
     public:
