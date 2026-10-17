@@ -5,6 +5,7 @@ using namespace std;
 //CONSTRACTOR
 template <class T>
 linkedlist<T>::linkedlist(){
+	count  = 0;
 	head = nullptr; //head now contains initialized address
 }
 //INSERTING AT THE FRONT
@@ -48,13 +49,16 @@ void linkedlist<T>::insertlast(T value){
 
 	count++; // Increment the count when a new node is added
 }
+
+
 // INSERT AT  GIVEN POSITION5
 template <class T>
-void linkedlist<T>::insertparticular(T value,int position){
+bool linkedlist<T>::insertparticular(T value,int position){
 	
 	if(position < 0){
-		return;
+		throw "Position cannot be less than 0";
 	}
+
 	Node<T>* newnode = new Node<T>;
 	newnode->data = value;
 	newnode->next = nullptr;
@@ -71,7 +75,7 @@ void linkedlist<T>::insertparticular(T value,int position){
 		head =newnode;
 
 		count++; // Increment the count when a new node is added
-		return;
+		return true;
 	}
 	
 	Node<T>* current =head;
@@ -79,14 +83,14 @@ void linkedlist<T>::insertparticular(T value,int position){
 	for(int i =0;i<position-1;i++){//POSITION-1 to stop before the disired position
 		if(current == nullptr){ //for a position that does not exist
 			delete newnode;
-			return;
+			return false;
 		}
 		current =current->next;
 	}
 	
 	if(current == nullptr){
         delete newnode;
-        return;
+        return false;
     }
 
     newnode->next = current->next;
@@ -99,7 +103,9 @@ void linkedlist<T>::insertparticular(T value,int position){
     current->next = newnode;
 
 	count++; // Increment the count when a new node is added
+	return true;
 }
+
 
 //REMOVING FRONT
 template <class T>
@@ -114,6 +120,8 @@ void linkedlist<T>::removefirst(){
 	}
 	delete temp;
 }
+
+
 //REMOVING LAST
 template <class T>
 void linkedlist<T>::removelast(){
@@ -133,6 +141,8 @@ void linkedlist<T>::removelast(){
 	current->next =nullptr;
 	delete temp;
 }
+
+
 //REMOVE PARTICULAR
 template <class T>
 void linkedlist<T>::removeparticular(int position){
@@ -191,7 +201,7 @@ bool linkedlist<T>::search(T value){
 
 //DISPLAY
 template <class T>
-void linkedlist<T>::display(){
+void linkedlist<T>::display() const{
 	Node<T>* current =head;
 	
 	while(current != nullptr){
@@ -219,7 +229,7 @@ linkedlist<T>::~linkedlist(){
 //----------methods needed for undo stack--------------------
 // Find a node by ID and return the data in result
 template <class T>
-bool linkedlist<T>::findByID(int id, T& result) {
+bool linkedlist<T>::findByID(int id, T& result) const {
     Node<T>* current = head;
 
     while (current != nullptr) {
@@ -279,6 +289,25 @@ bool linkedlist<T>::removeAt(int position, T& removed) {
 
 // Return the size of the linked list
 template <class T>
-int linkedlist<T>::size() {
+int linkedlist<T>::size() const {
 	return count;
+}
+
+
+// Update a node by ID and return the previous data in before 
+template <class T>
+bool linkedlist<T>::updateByID(int id, T updated, T& before) {
+    Node<T>* current = head;
+
+    while (current != nullptr) {
+        if (current->data.getResourceID() == id) {
+            before = current->data;  // Save original resource
+            current->data = updated; // Replace with new version
+            return true;
+        }
+
+        current = current->next;
+    }
+
+    return false; // Resource ID was not found
 }

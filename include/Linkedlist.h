@@ -21,7 +21,7 @@ class linkedlist{
 	public:
 		void insertfirst(T);
 		void insertlast(T);
-		void insertparticular(T,int);
+		bool insertparticular(T,int);
 		void removefirst();
 		void removelast();
 		void removeparticular(int);
@@ -29,16 +29,17 @@ class linkedlist{
 		void clear();
 		~linkedlist();
 		linkedlist();
-		void display();
+		void display() const;
 
 		//disable copy constructor and assignment operator
 		linkedlist(const linkedlist&) = delete;
 		linkedlist& operator=(const linkedlist&) = delete;
 
 		//methods needed for undo stack
-		bool findByID(int id, T& result);	//finds a node by ID and returns the data in result
+		bool updateByID(int id, T updated, T& before);	//update a node by ID and return the previous data in before
+		bool findByID(int id, T& result) const;	//finds a node by ID and returns the data in result
 		bool removeAt(int position, T& removed); //removes a node at a specific position and returns the data in removed
-		int size();
+		int size() const; //returns the size of the linked list
 		
 };
 #include "../src/LinkedList.cpp"
