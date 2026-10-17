@@ -201,7 +201,7 @@ bool linkedlist<T>::search(T value){
 
 //DISPLAY
 template <class T>
-void linkedlist<T>::display(){
+void linkedlist<T>::display() const{
 	Node<T>* current =head;
 	
 	while(current != nullptr){
@@ -229,7 +229,7 @@ linkedlist<T>::~linkedlist(){
 //----------methods needed for undo stack--------------------
 // Find a node by ID and return the data in result
 template <class T>
-bool linkedlist<T>::findByID(int id, T& result) {
+bool linkedlist<T>::findByID(int id, T& result) const {
     Node<T>* current = head;
 
     while (current != nullptr) {
@@ -289,7 +289,7 @@ bool linkedlist<T>::removeAt(int position, T& removed) {
 
 // Return the size of the linked list
 template <class T>
-int linkedlist<T>::size() {
+int linkedlist<T>::size() const {
 	return count;
 }
 
