@@ -49,30 +49,30 @@ void Resource::setAvailable(bool avail) {
 }
 
 // Getters
-int Resource::getResourceID() {
+int Resource::getResourceID() const{
     return resourceID;
 }
 
-string Resource::getName() {
+string Resource::getName() const{
     return name;
 }
 
-string Resource::getType() {
+string Resource::getType() const{
     return type;
 }
 
-string Resource::getLocation() {
+string Resource::getLocation() const{
     return location;
 }
 
-int Resource::getCapacity() {
+int Resource::getCapacity() const{
     return capacity;
 }
 
-bool Resource::isAvailable() {
+bool Resource::isAvailable() const{
     return available;
 }
-void  Resource::display() {
+void  Resource::display() const{
     cout << "Resource ID: " << resourceID << endl;
     cout << "Name: " << name << endl;
     cout << "Type: " << type << endl;

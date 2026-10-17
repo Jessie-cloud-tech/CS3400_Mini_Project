@@ -25,13 +25,13 @@ public:
     void setAvailable(bool);
 
     // Getters
-    int getResourceID();
-    string getName();
-    string getType();
-    string getLocation();
-    int getCapacity();
-    bool isAvailable();
-    void display();
+    int getResourceID() const;
+    string getName() const;
+    string getType() const;
+    string getLocation() const;
+    int getCapacity() const;
+    bool isAvailable() const;
+    void display() const;
 
     //comparison operators
     bool operator==(const Resource& other) const;
