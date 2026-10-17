@@ -5,6 +5,7 @@ using namespace std;
 //CONSTRACTOR
 template <class T>
 linkedlist<T>::linkedlist(){
+	count  = 0;
 	head = nullptr; //head now contains initialized address
 }
 //INSERTING AT THE FRONT
