@@ -21,7 +21,7 @@ class linkedlist{
 	public:
 		void insertfirst(T);
 		void insertlast(T);
-		void insertparticular(T,int);
+		bool insertparticular(T,int);
 		void removefirst();
 		void removelast();
 		void removeparticular(int);

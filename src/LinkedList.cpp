@@ -48,13 +48,16 @@ void linkedlist<T>::insertlast(T value){
 
 	count++; // Increment the count when a new node is added
 }
+
+
 // INSERT AT  GIVEN POSITION5
 template <class T>
-void linkedlist<T>::insertparticular(T value,int position){
+bool linkedlist<T>::insertparticular(T value,int position){
 	
 	if(position < 0){
-		return;
+		throw "Position cannot be less than 0";
 	}
+
 	Node<T>* newnode = new Node<T>;
 	newnode->data = value;
 	newnode->next = nullptr;
@@ -71,7 +74,7 @@ void linkedlist<T>::insertparticular(T value,int position){
 		head =newnode;
 
 		count++; // Increment the count when a new node is added
-		return;
+		return true;
 	}
 	
 	Node<T>* current =head;
@@ -79,14 +82,14 @@ void linkedlist<T>::insertparticular(T value,int position){
 	for(int i =0;i<position-1;i++){//POSITION-1 to stop before the disired position
 		if(current == nullptr){ //for a position that does not exist
 			delete newnode;
-			return;
+			return false;
 		}
 		current =current->next;
 	}
 	
 	if(current == nullptr){
         delete newnode;
-        return;
+        return false;
     }
 
     newnode->next = current->next;
@@ -99,7 +102,9 @@ void linkedlist<T>::insertparticular(T value,int position){
     current->next = newnode;
 
 	count++; // Increment the count when a new node is added
+	return true;
 }
+
 
 //REMOVING FRONT
 template <class T>
@@ -114,6 +119,8 @@ void linkedlist<T>::removefirst(){
 	}
 	delete temp;
 }
+
+
 //REMOVING LAST
 template <class T>
 void linkedlist<T>::removelast(){
@@ -133,6 +140,8 @@ void linkedlist<T>::removelast(){
 	current->next =nullptr;
 	delete temp;
 }
+
+
 //REMOVE PARTICULAR
 template <class T>
 void linkedlist<T>::removeparticular(int position){
