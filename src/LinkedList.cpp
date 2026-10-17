@@ -292,3 +292,22 @@ template <class T>
 int linkedlist<T>::size() {
 	return count;
 }
+
+
+// Update a node by ID and return the previous data in before 
+template <class T>
+bool linkedlist<T>::updateByID(int id, T updated, T& before) {
+    Node<T>* current = head;
+
+    while (current != nullptr) {
+        if (current->data.getResourceID() == id) {
+            before = current->data;  // Save original resource
+            current->data = updated; // Replace with new version
+            return true;
+        }
+
+        current = current->next;
+    }
+
+    return false; // Resource ID was not found
+}

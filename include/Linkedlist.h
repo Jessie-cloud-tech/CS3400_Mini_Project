@@ -36,6 +36,7 @@ class linkedlist{
 		linkedlist& operator=(const linkedlist&) = delete;
 
 		//methods needed for undo stack
+		bool updateByID(int id, T updated, T& before);
 		bool findByID(int id, T& result);	//finds a node by ID and returns the data in result
 		bool removeAt(int position, T& removed); //removes a node at a specific position and returns the data in removed
 		int size();
