@@ -114,7 +114,7 @@ bool ResourceManager::addResource(const Resource& resource)  {
 }
 
 
-void ResourceManager::displayResources(){
+void ResourceManager::displayResources() const{
     resources.display();
 }
 
@@ -137,4 +137,14 @@ bool ResourceManager::updateResource(const Resource& updated) {
 
     cout << "Resource updated successfully." <<endl;
     return true;
+}
+
+
+bool ResourceManager::findResourceByID(int id, Resource& result) const {
+    return resources.findByID(id, result);
+}
+
+
+int ResourceManager::getResourceCount() const {
+    return resources.size();
 }
