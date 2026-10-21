@@ -119,7 +119,7 @@ void linkedlist<T>::removefirst(){
 	if (head != nullptr){
 		head->prev = nullptr;
 	}
-	counnt--; // Decrement the count when a node is removed
+	count--; // Decrement the count when a node is removed
 	delete temp;
 }
 
