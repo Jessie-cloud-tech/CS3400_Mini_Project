@@ -38,5 +38,5 @@ class Queue {
         void clear();   //clear the queue
 };
 
-#include "../src/queue.cpp"
+#include "../src/queue.tpp"
 #endif

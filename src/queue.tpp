@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdexcept>
-#include "../include/queue.h"
 
 // Queue class implementation
 template <typename T>

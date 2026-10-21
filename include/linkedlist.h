@@ -1,8 +1,6 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-#include "resource.h"
-
 
 template <class T>
 
@@ -42,5 +40,6 @@ class linkedlist{
 		int size() const; //returns the size of the linked list
 		
 };
-#include "../src/LinkedList.cpp"
+
+#include "../src/linkedlist.tpp"
 #endif // LINKEDLIST_H

@@ -2,7 +2,7 @@
 #define RESOURCE_MANAGER_H
 
 #include "resource.h"
-#include "Linkedlist.h"
+#include "linkedlist.h"
 #include "stack.h"
 #include "action_record.h"
 

@@ -1,6 +1,7 @@
 #include <iostream>
 //#include "../include/LinkedList.h"
-using namespace std;
+using std::cout;
+using std::endl;
 
 //CONSTRACTOR
 template <class T>
