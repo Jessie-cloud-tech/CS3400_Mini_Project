@@ -39,7 +39,7 @@ class Stack {
 
 };
 
-#include "../src/stack.cpp"
+#include "../src/stack.tpp"
 
 #endif
 
